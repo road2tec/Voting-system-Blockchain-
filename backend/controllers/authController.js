@@ -10,7 +10,7 @@ const generateToken = (id) => {
 // @access  Public
 const registerUser = async (req, res) => {
     try {
-        const { name, email, password, area, address, age } = req.body;
+        const { name, email, password, department, address, age } = req.body;
 
         const userExists = await User.findOne({ email });
         if (userExists) {
@@ -21,7 +21,7 @@ const registerUser = async (req, res) => {
             name,
             email,
             password,
-            area,
+            department,
             address,
             age,
             role: 'voter', // Default role is voter
@@ -63,6 +63,7 @@ const loginUser = async (req, res) => {
                 name: user.name,
                 email: user.email,
                 role: user.role,
+                department: user.department,
                 token: generateToken(user._id)
             });
         } else {
@@ -87,7 +88,8 @@ const getUserProfile = async (req, res) => {
                 email: user.email,
                 role: user.role,
                 isVerified: user.isVerified,
-                hasVoted: user.hasVoted
+                hasVoted: user.hasVoted,
+                department: user.department
             });
         } else {
             res.status(404).json({ message: 'User not found' });

@@ -29,7 +29,7 @@ export const requestAccount = async () => {
     return accounts[0];
 };
 
-export const getContract = async () => {
+export const getContractWithSigner = async () => {
     const ethereum = getEthereumObject();
     if (!ethereum) throw new Error("Metamask not found");
 
@@ -42,9 +42,28 @@ export const getContract = async () => {
     return contract;
 };
 
+// Alias for backward compatibility
+export const getContract = getContractWithSigner;
+
+// Use this for read-only calls
+export const getReadOnlyContract = async () => {
+    const ethereum = getEthereumObject();
+    let provider;
+
+    if (ethereum) {
+        provider = new ethers.BrowserProvider(ethereum);
+    } else {
+        // Fallback to local RPC if no metamask
+        provider = new ethers.JsonRpcProvider("http://127.0.0.1:7545");
+    }
+
+    if (!CONTRACT_ADDRESS) throw new Error("Contract address not found in env");
+    return new ethers.Contract(CONTRACT_ADDRESS, VotingABI, provider);
+};
+
 export const getCandidates = async () => {
     try {
-        const contract = await getContract();
+        const contract = await getReadOnlyContract();
         const candidates = await contract.getAllCandidates();
         // Transform struct array to object array if needed
         return candidates.map(c => ({
@@ -60,7 +79,7 @@ export const getCandidates = async () => {
 
 export const castVote = async (candidateId) => {
     try {
-        const contract = await getContract();
+        const contract = await getContractWithSigner();
         const tx = await contract.vote(candidateId);
         await tx.wait();
         return tx.hash;
@@ -72,7 +91,7 @@ export const castVote = async (candidateId) => {
 
 export const isElectionActive = async () => {
     try {
-        const contract = await getContract();
+        const contract = await getReadOnlyContract();
         const active = await contract.electionActive();
         return active;
     } catch (error) {

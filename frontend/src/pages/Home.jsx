@@ -14,12 +14,12 @@ const Home = () => {
 
     const faqs = [
         {
-            q: "How does area-wise administration work?",
-            a: "Our system assigns specific administrators to oversee individual geographic areas or voting regions. These admins are responsible for verifying local voters and managing candidates within their jurisdiction."
+            q: "How does department-wise administration work?",
+            a: "Our system assigns specific administrators to oversee individual departments (e.g., Computer Science, Mechanical). These admins are responsible for verifying student eligibility and managing candidates within their department."
         },
         {
             q: "Is account creation open to the public?",
-            a: "No. To maintain strict security and eligibility, voter accounts are onboarded and verified by designated administrators. This prevents bot registrations and ensures only valid stakeholders can participate."
+            a: "No. To maintain strict security and eligibility, student accounts are onboarded and verified by designated department administrators. This prevents unauthorized registrations and ensures only valid stakeholders can participate."
         },
         {
             q: "What makes this system tamper-proof?",
@@ -78,7 +78,7 @@ const Home = () => {
                         transition={{ delay: 0.1 }}
                         className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-gray-900 mb-6 leading-tight px-2"
                     >
-                        Institutional <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-800 animate-gradient-x">Governance</span><br className="hidden md:block" /> via Blockchain
+                        College <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-800 animate-gradient-x">Student Council</span><br className="hidden md:block" /> via Blockchain
                     </motion.h1>
 
                     <motion.p
@@ -87,7 +87,7 @@ const Home = () => {
                         transition={{ delay: 0.2 }}
                         className="text-xl md:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed font-medium"
                     >
-                        A tamper-proof, decentralized ledger for area-specific administration. Ensuring every vote is immutable and every result is transparent.
+                        A tamper-proof, decentralized ledger for department-specific elections. Ensuring every student's vote is immutable and every result is transparent.
                     </motion.p>
 
                     <motion.div
@@ -160,10 +160,10 @@ const Home = () => {
                         {[
                             { icon: ShieldCheck, title: "Blockchain Immutability", desc: "Every vote is anchored to the Ethereum ledger. Once cast, it can never be altered, deleted, or disputed.", gradient: "from-blue-600 to-indigo-700" },
                             { icon: Lock, title: "Cryptographic Privacy", desc: "State-of-the-art encryption ensures that while the vote count is public, your specific identity choice remains private.", gradient: "from-blue-600 to-cyan-700" },
-                            { icon: Users, title: "Area-Wise Administration", desc: "Unique governance model where administrators manage specific voting areas or regions for targeted oversight.", gradient: "from-indigo-600 to-purple-700" },
+                            { icon: Users, title: "Departmental Administration", desc: "Unique governance model where administrators manage specific college departments for targeted oversight.", gradient: "from-indigo-600 to-purple-700" },
                             { icon: BarChart3, title: "Live Node Verification", desc: "Results are aggregated in real-time directly from blockchain nodes, eliminating manual counting errors.", gradient: "from-blue-600 to-teal-700" },
                             { icon: Shield, title: "Master Super-Admin Control", desc: "Centralized election lifecycle management ensures that only authorized officers can start or end voting sessions.", gradient: "from-indigo-700 to-blue-800" },
-                            { icon: UserCheck, title: "Verified Identity Only", desc: "Rigorous onboarding ensures that every participant is a verified voter within their respective area.", gradient: "from-blue-700 to-indigo-900" }
+                            { icon: UserCheck, title: "Verified Students Only", desc: "Rigorous onboarding ensures that every participant is a verified student within their respective department.", gradient: "from-blue-700 to-indigo-900" }
                         ].map((feature, idx) => (
                             <motion.div
                                 key={idx}
@@ -204,7 +204,7 @@ const Home = () => {
                         <div className="hidden md:block absolute top-24 left-0 right-0 h-1 bg-gradient-to-r from-blue-200 via-blue-400 to-blue-600 z-0"></div>
 
                         {[
-                            { step: '01', icon: UserCheck, title: 'Regional Onboarding', desc: 'Administrators verify and onboard voters within their specific area or voting region.', color: 'from-blue-600 to-indigo-700' },
+                            { step: '01', icon: UserCheck, title: 'Departmental Enrollment', desc: 'Department administrators verify and onboard students within their specific academic branch.', color: 'from-blue-600 to-indigo-700' },
                             { step: '02', icon: Vote, title: 'Secure Voting', desc: 'Eligible voters cast their ballots through a cryptographically secured interface.', color: 'from-blue-700 to-cyan-700' },
                             { step: '03', icon: Lock, title: 'Blockchain Anchor', desc: 'Each vote is permanently hashed and recorded as an immutable transaction.', color: 'from-indigo-600 to-purple-700' },
                             { step: '04', icon: BarChart3, title: 'Global Transparency', desc: 'Real-time results are verified against a decentralized ledger for auditability.', color: 'from-blue-700 to-indigo-900' }
@@ -349,16 +349,16 @@ const Home = () => {
                     >
                         <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Securing the Future of Governance</h2>
                         <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                            Our Blockchain Voting System is engineered for institutional trust. By combining Ethereum's immutable ledger with a granular three-tier governance model, we ensure that every election is beyond reproach.
+                            Our College Blockchain Voting System is engineered for campus trust. By combining Ethereum's immutable ledger with a granular three-tier governance model, we ensure that student council elections are beyond reproach.
                         </p>
                         <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                            Super-Admins hold the master key to the election lifecycle, while Regional Admins provide local oversight for specific areas and voting regions. This decentralized yet organized approach ensures that voter verification is rigorous, candidate management is transparent, and results are instantly verifiable from anywhere in the world.
+                            Super-Admins hold the master key to the election lifecycle, while Departmental Admins provide local oversight for specific branches and years. This decentralized yet organized approach ensures that student verification is rigorous, candidate management is transparent, and results are instantly verifiable by the entire student body.
                         </p>
                         <div className="flex justify-center gap-4 flex-wrap">
                             {[
                                 { label: '🛡️ Immutable', bgColor: 'bg-blue-100', textColor: 'text-blue-700' },
                                 { label: '⚖️ Auditable', bgColor: 'bg-indigo-100', textColor: 'text-indigo-700' },
-                                { label: '🏘️ Area-Based', bgColor: 'bg-teal-100', textColor: 'text-teal-700' },
+                                { label: '🏘️ Dept-Based', bgColor: 'bg-teal-100', textColor: 'text-teal-700' },
                                 { label: '✅ Decentralized', bgColor: 'bg-purple-100', textColor: 'text-purple-700' }
                             ].map((badge, idx) => (
                                 <motion.div

@@ -75,7 +75,7 @@ const Admins = () => {
                             </div>
                             <h3 className="text-xl font-bold text-gray-800 mb-2">No Administrators Found</h3>
                             <p className="text-gray-500 text-sm max-w-xs mx-auto mb-8 font-medium">
-                                Start by creating your first regional administrator to manage specific voting areas.
+                                Start by creating your first departmental administrator to manage specific college branches.
                             </p>
                             <Link
                                 to="/superadmin/create-admin"
@@ -102,7 +102,7 @@ const Admins = () => {
                                 <div>
                                     <h3 className="text-base font-black text-gray-900">{admin.name}</h3>
                                     <span className="text-[9px] font-black text-indigo-600 uppercase tracking-widest bg-indigo-50 px-2 py-0.5 rounded-md border border-indigo-100">
-                                        {admin.area || 'General Admin'}
+                                        {admin.department || 'General Admin'}
                                     </span>
                                 </div>
                             </div>

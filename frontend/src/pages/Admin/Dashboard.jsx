@@ -49,27 +49,34 @@ const AdminDashboard = () => {
 
     return (
         <div className="space-y-6 md:space-y-8">
+            <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-3">
+                    <Activity className="text-blue-500 animate-pulse" size={20} />
+                    <span className="text-[10px] font-black text-blue-500 uppercase tracking-widest">Live Dashboard Sync Active</span>
+                </div>
+                <div className="text-[9px] font-bold text-gray-400">Refreshes every 3 seconds</div>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <StatCard
                     title="Total Candidates"
                     value={stats.totalCandidates}
                     icon={Users}
                     color="bg-blue-500"
-                    subLabel="Registered"
+                    subLabel="Campus-wide"
                 />
                 <StatCard
-                    title="Verified Voters"
+                    title="Verified Students"
                     value={stats.verifiedVoters}
                     icon={UserCheck}
                     color="bg-indigo-500"
-                    subLabel={`${stats.unverifiedVoters} Pending`}
+                    subLabel={`${stats.unverifiedVoters} Pending Approval`}
                 />
                 <StatCard
-                    title="Live Vote Count"
+                    title="Live Student Votes"
                     value={stats.liveVoteCount}
                     icon={Vote}
                     color="bg-purple-500"
-                    subLabel="Real-time"
+                    subLabel="Blockchain Sync Active"
                 />
                 <StatCard
                     title="Election Status"
@@ -96,7 +103,7 @@ const AdminDashboard = () => {
                             <div className="p-3 bg-white rounded-xl shadow-sm group-hover:text-blue-600 transition-colors">
                                 <UserPlus size={20} />
                             </div>
-                            <span className="text-xs font-bold text-gray-700">Add New Voter</span>
+                            <span className="text-xs font-bold text-gray-700">Enroll New Student</span>
                         </motion.button>
                         <motion.button
                             onClick={() => navigate('/admin/add-candidate')}

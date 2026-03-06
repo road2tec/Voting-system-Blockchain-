@@ -11,7 +11,7 @@ const Register = () => {
         email: '',
         password: '',
         confirmPassword: '',
-        area: '',
+        department: '',
         address: '',
         age: ''
     });
@@ -80,8 +80,8 @@ const Register = () => {
                         >
                             <UserPlus size={32} className="md:size-10" />
                         </motion.div>
-                        <h2 className="text-3xl md:text-4xl font-black text-gray-900 tracking-tight">Voter Onboarding</h2>
-                        <p className="text-sm md:text-base text-gray-500 mt-2 font-medium">Register for secure blockchain-based voting</p>
+                        <h2 className="text-3xl md:text-4xl font-black text-gray-900 tracking-tight">Student Enrollment</h2>
+                        <p className="text-sm md:text-base text-gray-500 mt-2 font-medium">Register for secure college elections</p>
                     </div>
 
                     <form onSubmit={handleRegister} className="space-y-5">
@@ -132,14 +132,14 @@ const Register = () => {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <div className="relative">
-                                <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1 mb-1 block">Voting Area / Constituency</label>
+                                <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1 mb-1 block">College Department / Year</label>
                                 <div className="relative">
                                     <ShieldCheck className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
                                     <input
                                         type="text"
-                                        name="area"
-                                        placeholder="Pune North"
-                                        value={formData.area}
+                                        name="department"
+                                        placeholder="Computer Science"
+                                        value={formData.department}
                                         onChange={handleChange}
                                         className="w-full pl-12 pr-4 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:border-blue-500 focus:bg-white focus:shadow-lg outline-none transition-all font-medium text-gray-800"
                                         required
@@ -166,12 +166,12 @@ const Register = () => {
                         </div>
 
                         <div className="relative">
-                            <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1 mb-1 block">Permanent Address (Area)</label>
+                            <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1 mb-1 block">Contact Address (Hostel/Res.)</label>
                             <div className="relative">
                                 <MapPin className="absolute left-4 top-4 text-gray-400" size={18} />
                                 <textarea
                                     name="address"
-                                    placeholder="House No, Area, City, Pin Code"
+                                    placeholder="Room No, Hostel Name / Local Address"
                                     rows="2"
                                     value={formData.address}
                                     onChange={handleChange}
@@ -246,7 +246,7 @@ const Register = () => {
                         <AlertCircle className="text-blue-600 mt-1 flex-shrink-0" size={20} />
                         <p className="text-xs text-blue-800 font-bold leading-relaxed">
                             <span className="block mb-1 text-[10px] uppercase tracking-tighter">Security Protocol:</span>
-                            All registrations are subject to mandatory administrative verification. You will be able to cast votes only after your identity and area are confirmed by a designated officer.
+                            All student registrations are subject to mandatory departmental verification. You will be able to cast votes only after your student ID and department are confirmed by a designated election officer.
                         </p>
                     </div>
                 </motion.div>

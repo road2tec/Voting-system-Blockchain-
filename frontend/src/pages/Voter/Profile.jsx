@@ -8,7 +8,7 @@ const Profile = () => {
     const infoItems = [
         { label: 'Full Legal Name', value: currentUser?.name, icon: User },
         { label: 'System Email', value: currentUser?.email, icon: Mail },
-        { label: 'Voting Area', value: currentUser?.area, icon: Building },
+        { label: 'College Department', value: currentUser?.department, icon: Building },
         { label: 'Role Designation', value: currentUser?.role, icon: MapPin },
     ];
 
@@ -33,7 +33,7 @@ const Profile = () => {
                     </div>
                     <div className="text-center md:text-left">
                         <h2 className="text-3xl font-black text-gray-900 tracking-tight">{currentUser?.name}</h2>
-                        <p className="text-gray-500 font-medium">Verified Citizen Registry</p>
+                        <p className="text-gray-500 font-medium">Verified Student Directory</p>
                     </div>
                 </div>
 

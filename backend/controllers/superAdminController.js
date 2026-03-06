@@ -6,7 +6,7 @@ const AuditLog = require('../models/AuditLog');
 // @access  Super Admin
 const createAdmin = async (req, res) => {
     try {
-        const { name, email, password, area } = req.body;
+        const { name, email, password, department } = req.body;
 
         const userExists = await User.findOne({ email });
         if (userExists) {
@@ -17,7 +17,7 @@ const createAdmin = async (req, res) => {
             name,
             email,
             password,
-            area,
+            department,
             role: 'admin',
             isVerified: true
         });
@@ -49,18 +49,18 @@ const getAnalytics = async (req, res) => {
         const verifiedVoters = await User.countDocuments({ role: 'voter', isVerified: true });
         const votesCast = await User.countDocuments({ hasVoted: true });
 
-        // Area-wise breakdown
-        const areaStats = await User.aggregate([
+        // Department-wise breakdown
+        const departmentStats = await User.aggregate([
             { $match: { role: 'voter' } },
             {
                 $group: {
-                    _id: "$area",
+                    _id: "$department",
                     count: { $sum: 1 },
                     verified: { $sum: { $cond: ["$isVerified", 1, 0] } },
                     voted: { $sum: { $cond: ["$hasVoted", 1, 0] } }
                 }
             },
-            { $project: { area: "$_id", count: 1, verified: 1, voted: 1, _id: 0 } }
+            { $project: { department: "$_id", count: 1, verified: 1, voted: 1, _id: 0 } }
         ]);
 
         res.json({
@@ -68,7 +68,7 @@ const getAnalytics = async (req, res) => {
             totalAdmins,
             verifiedVoters,
             votesCast,
-            areaStats
+            departmentStats
         });
     } catch (error) {
         res.status(500).json({ message: error.message });

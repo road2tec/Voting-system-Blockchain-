@@ -22,7 +22,7 @@ const Analytics = () => {
         totalAdmins: 0,
         verifiedVoters: 0,
         votesCast: 0,
-        areaStats: []
+        departmentStats: []
     });
     const [loading, setLoading] = useState(true);
 
@@ -52,24 +52,31 @@ const Analytics = () => {
 
     return (
         <div className="space-y-8">
+            <div className="flex items-center justify-between mb-4 bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
+                <div className="flex items-center gap-3">
+                    <Activity className="text-blue-500 animate-pulse" size={20} />
+                    <span className="text-[10px] font-black text-blue-500 uppercase tracking-widest">Global Live Node Sync Active</span>
+                </div>
+                <div className="text-[9px] font-bold text-gray-400">Master Data Refreshing in 3s Cycles</div>
+            </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
                 {/* Area-wise distribution Chart */}
                 <div className="lg:col-span-2 bg-white p-5 md:p-8 rounded-3xl shadow-sm border border-gray-100">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
                         <h2 className="text-xl font-bold text-gray-800 flex items-center gap-2">
                             <Activity className="text-blue-500" size={20} />
-                            Area Wise Monitoring
+                            Departmental Monitoring
                         </h2>
                         <div className="text-xs font-bold text-gray-400 uppercase tracking-widest px-3 py-1 bg-gray-50 rounded-lg">
-                            Voter Distribution
+                            Student Distribution
                         </div>
                     </div>
                     <div className="h-[300px] md:h-[400px] w-full">
                         <ResponsiveContainer width="100%" height="100%">
-                            <BarChart data={stats.areaStats}>
+                            <BarChart data={stats.departmentStats}>
                                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
                                 <XAxis
-                                    dataKey="area"
+                                    dataKey="department"
                                     axisLine={false}
                                     tickLine={false}
                                     tick={{ fill: '#6B7280', fontSize: 10, fontWeight: 700 }}
@@ -85,7 +92,7 @@ const Analytics = () => {
                                     contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)' }}
                                 />
                                 <Bar dataKey="count" radius={[6, 6, 0, 0]} barSize={45}>
-                                    {stats.areaStats.map((entry, index) => (
+                                    {stats.departmentStats.map((entry, index) => (
                                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                     ))}
                                 </Bar>
@@ -124,7 +131,7 @@ const Analytics = () => {
                         <div className="flex items-center justify-between text-sm">
                             <div className="flex items-center gap-2">
                                 <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                                <span className="font-medium text-gray-600">Verified Voters</span>
+                                <span className="font-medium text-gray-600">Verified Students</span>
                             </div>
                             <span className="font-bold text-gray-800">{stats.verifiedVoters}</span>
                         </div>

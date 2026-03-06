@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
     hasVoted: { type: Boolean, default: false },
     votedCandidateId: { type: Number },
     walletAddress: { type: String },
-    area: { type: String },
+    department: { type: String },
     address: { type: String },
     age: { type: Number }
 }, { timestamps: true });

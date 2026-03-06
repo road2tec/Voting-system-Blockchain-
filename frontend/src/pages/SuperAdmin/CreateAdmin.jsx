@@ -3,7 +3,7 @@ import { superAdminService } from '../../services/api';
 import { UserPlus } from 'lucide-react';
 
 const CreateAdmin = () => {
-    const [formData, setFormData] = useState({ name: '', email: '', password: '', area: '' });
+    const [formData, setFormData] = useState({ name: '', email: '', password: '', department: '' });
     const [message, setMessage] = useState('');
 
     const handleSubmit = async (e) => {
@@ -11,7 +11,7 @@ const CreateAdmin = () => {
         try {
             await superAdminService.createAdmin(formData);
             setMessage('Admin created successfully!');
-            setFormData({ name: '', email: '', password: '', area: '' });
+            setFormData({ name: '', email: '', password: '', department: '' });
         } catch (error) {
             setMessage('Error creating admin');
         }
@@ -48,12 +48,12 @@ const CreateAdmin = () => {
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Assigned Voting Area / Constituency</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Assigned College Department / Branch</label>
                         <input
                             type="text"
-                            placeholder="e.g. Pune North, Mumbai Central, etc."
-                            value={formData.area}
-                            onChange={(e) => setFormData({ ...formData, area: e.target.value })}
+                            placeholder="e.g. Computer Science, IT, Mechanical"
+                            value={formData.department}
+                            onChange={(e) => setFormData({ ...formData, department: e.target.value })}
                             className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium"
                             required
                         />

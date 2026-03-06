@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs');
 // @access  Admin
 const addVoter = async (req, res) => {
     try {
-        const { name, email, password, area } = req.body;
+        const { name, email, password, department } = req.body;
 
         const userExists = await User.findOne({ email });
         if (userExists) {
@@ -19,7 +19,7 @@ const addVoter = async (req, res) => {
             name,
             email,
             password,
-            area,
+            department,
             role: 'voter',
             isVerified: true // Auto-verify since Admin created it
         });

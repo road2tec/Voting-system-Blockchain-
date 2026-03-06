@@ -42,7 +42,16 @@ const AddCandidate = () => {
             setFormData({ name: '', party: '', manifesto: '', age: '', qualification: '' });
         } catch (error) {
             console.error(error);
-            setMessage(`Error: ${error.reason || error.message}`);
+            let msg = "Action failed";
+            if (error.response && error.response.data && error.response.data.message) {
+                // Backend specific error (e.g., 400 Candidate already exists)
+                msg = error.response.data.message;
+            } else if (error.message.includes("estimateGas") || error.message.includes("revert")) {
+                msg = "Permission or State Denied: Either you are not using the Owner account in MetaMask, or the Election is already START (Active). You cannot add candidates while the election is running.";
+            } else {
+                msg = error.reason || error.message || msg;
+            }
+            setMessage(`Error: ${msg}`);
         } finally {
             setLoading(false);
         }

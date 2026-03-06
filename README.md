@@ -36,7 +36,8 @@ cd smart-contract
 npm install
 npx hardhat compile
 # Configure .env with RPC URL and PRIVATE_KEY
-npx hardhat run scripts/deploy.js --network sepolia
+npx hardhat run scripts/deploy.js --network ganache
+
 ```
 
 ### 2. Backend API
