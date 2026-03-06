@@ -1,73 +1,78 @@
-# BlockVote: Advanced Blockchain Governance System
+# College Blockchain Voting System 🗳️🏢
 
-![License](https://img.shields.io/badge/Security-Blockchain-blue)
-![Platform](https://img.shields.io/badge/Platform-MERN-green)
-![Responsive](https://img.shields.io/badge/Mobile-Android_Ready-orange)
+A secure, transparent, and immutable voting system designed specifically for educational institutions. Powered by Ethereum (Ganache) and the MERN stack.
 
-A premium, secure, and decentralized institutional governance platform built on the Ethereum blockchain. Transitioning from traditional voting to a transparent, tamper-proof regional administration model.
+---
 
-## 🚀 Key Features
+## 🛠️ Technology Stack
+- **Frontend**: React.js, Tailwind CSS, Framer Motion, Lucide Icons, Recharts
+- **Backend**: Node.js, Express.js, MongoDB (Mongoose)
+- **Blockchain**: Solidity, Hardhat, Ethers.js
+- **Network**: Local RPC (Ganache / Hardhat Node)
 
-- **Decentralized Ledger Architecture**: Every vote is anchored to an Ethereum blockchain node, ensuring cryptographic immutability.
-- **Regional Administrative Governance**: Area-specific oversight allowing administrators to manage unique voting constituencies and regional voter lists.
-- **Mandatory Admin Verification**: Robust security loop where new users must be manually verified by officers before gaining voting rights.
-- **Android & Mobile Optimized**: A tailor-made UI experience ensuring full functionality and legibility on mobile viewports and Android devices.
-- **Premium Analytics Suite**: Real-time distribution monitoring and voter turnout visualization for institutional transparency.
-- **Glassmorphic UI/UX**: High-end light-themed aesthetic with smooth animations and intuitive navigation.
+---
 
-## 🛠️ Tech Stack
+## 🔑 Default Credentials (Development)
+Stored in `backend/.env` for testing:
 
-- **Frontend**: React 18, Vite, Tailwind CSS (Glassmorphism), Framer Motion, Ethers.js, Recharts.
-- **Backend**: Node.js, Express.js (v5.x), MongoDB, JWT Auth, Nodemon.
-- **Blockchain**: Solidity, Hardhat, Smart Contract (Ethereum Virtual Machine).
+| Role | Email | Password |
+| :--- | :--- | :--- |
+| **Super Admin** | `super@vote.com` | `password123` |
+| **Admin** | `admin@vote.com` | `password123` |
+| **Voter (Student)** | `voter@vote.com` | `password123` |
 
-## 📋 Prerequisites
+---
 
-- **Node.js**: v20 or higher recommended.
-- **Database**: MongoDB (Local instance or Atlas).
-- **Wallet**: MetaMask extension (for blockchain transactions).
-- **Environment**: Setup `.env` files in `backend`, `frontend`, and `smart-contract`.
-
-## 🚀 Quick Setup
+## 🚀 Setup Instructions
 
 ### 1. Smart Contract Deployment
 ```bash
 cd smart-contract
-npm install
-npx hardhat compile
-# Configure .env with RPC URL and PRIVATE_KEY
+# 1. Start Ganache (GUI or CLI on port 7545)
+# 2. Deploy Contract
 npx hardhat run scripts/deploy.js --network ganache
-
 ```
+*Take the deployed contract address and update it in `frontend/.env` and `backend/.env`.*
 
-### 2. Backend API
+### 2. Backend Setup
 ```bash
 cd backend
 npm install
-# Configure .env with MONGO_URI, JWT_SECRET, PORT
+# 1. Sync Database with Contract
+node scripts/clearCandidates.js
+# 2. Seed Default Users
+node scripts/seedUsers.js
+# 3. Start Server
 npm run dev
 ```
 
-### 3. Frontend Dashboard
+### 3. Frontend Setup
 ```bash
 cd frontend
 npm install
-# Configure .env with VITE_CONTRACT_ADDRESS
 npm run dev
 ```
 
-## 🏗️ Production Build
-To generate a production-ready optimized build for the frontend:
-```bash
-cd frontend
-npm run build
-```
+---
 
-## 🔒 Security Information
-This system enforces a **Zero-Bypass** verification policy. 
-1. Users register but are blocked from logging in.
-2. Admins review identity and confirm 'Area' eligibility.
-3. Once verified, the user can log in and cast an immutable vote on the blockchain.
+## 💡 Workflow For Every Session
+
+1. **Start Ganache**: Ensure the RPC URL is `HTTP://127.0.0.1:7545`.
+2. **Deploy Contract**: If you restart Ganache, you **MUST** redeploy and update `.env` files.
+3. **Reset Database**: Run `node scripts/clearCandidates.js` in the backend after any contract change.
+4. **MetaMask**: 
+   - Connect MetaMask to Ganache Local Network (Chain ID: 1337).
+   - If a student has already voted, you **MUST switch accounts** in MetaMask manually to vote as a different student.
+
+---
+
+## ✨ Features
+- **Real-Time Analytics**: Live vote counts and departmental distribution charts.
+- **Voter Protection**: Prevents double voting at both the blockchain and application level.
+- **Role-Based Access**: Specialized dashboards for SuperAdmin, Admin, and Students.
+- **Audit Logs**: Transparent tracking of administrative actions.
+
+---
 
 ## 📄 License
-Custom Institutional License - All rights reserved.
+MIT License - Developed for Institutional Excellence.

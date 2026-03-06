@@ -8,7 +8,21 @@ const AuditLog = require('../models/AuditLog');
 const getCandidates = async (req, res) => {
     try {
         const candidates = await Candidate.find({});
-        res.json(candidates);
+
+        // Enhance candidates with actual vote counts from User model
+        const candidatesWithVotes = await Promise.all(candidates.map(async (cand) => {
+            const count = await User.countDocuments({
+                role: 'voter',
+                hasVoted: true,
+                votedCandidateId: cand.blockchainId
+            });
+            return {
+                ...cand._doc,
+                voteCount: count // Overriding with live calculated count
+            };
+        }));
+
+        res.json(candidatesWithVotes);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

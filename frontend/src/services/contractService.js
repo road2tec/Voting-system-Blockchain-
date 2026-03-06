@@ -99,3 +99,14 @@ export const isElectionActive = async () => {
         return false;
     }
 };
+
+export const checkIfVoted = async (address) => {
+    try {
+        const contract = await getReadOnlyContract();
+        const voterInfo = await contract.voters(address);
+        return voterInfo.hasVoted;
+    } catch (error) {
+        console.error("Error checking voter status", error);
+        return false;
+    }
+};

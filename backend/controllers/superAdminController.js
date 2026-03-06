@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const Candidate = require('../models/Candidate');
 const AuditLog = require('../models/AuditLog');
 
 // @desc    Create a new Admin
@@ -63,12 +64,25 @@ const getAnalytics = async (req, res) => {
             { $project: { department: "$_id", count: 1, verified: 1, voted: 1, _id: 0 } }
         ]);
 
+        // Candidate-wise breakdown (Live Results)
+        const candidates = await Candidate.find({});
+        const candidateStats = await Promise.all(candidates.map(async (c) => {
+            const count = await User.countDocuments({ role: 'voter', hasVoted: true, votedCandidateId: c.blockchainId });
+            return {
+                name: c.name,
+                party: c.party,
+                voteCount: count,
+                blockchainId: c.blockchainId
+            };
+        }));
+
         res.json({
             totalVoters,
             totalAdmins,
             verifiedVoters,
             votesCast,
-            departmentStats
+            departmentStats,
+            candidateStats
         });
     } catch (error) {
         res.status(500).json({ message: error.message });

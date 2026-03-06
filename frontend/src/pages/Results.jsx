@@ -23,7 +23,8 @@ const Results = () => {
 
             const formattedData = res.data.map((cand, idx) => ({
                 name: cand.name,
-                votes: cand.voteCount || 0, // Fallback
+                party: cand.party,
+                votes: cand.voteCount || 0,
                 color: colors[idx % colors.length]
             }));
 
@@ -111,7 +112,7 @@ const Results = () => {
                                 return (
                                     <tr key={idx} className="border-b border-gray-50 last:border-0 hover:bg-blue-50/30 transition-colors">
                                         <td className="px-6 py-4 font-medium text-gray-900">{item.name}</td>
-                                        <td className="px-6 py-4 text-gray-500 text-sm">Independent</td>
+                                        <td className="px-6 py-4 text-gray-500 text-sm">{item.party || 'Independent'}</td>
                                         <td className="px-6 py-4 text-right font-bold text-gray-800">{item.votes}</td>
                                         <td className="px-6 py-4 text-right">
                                             <span className="px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-600">
